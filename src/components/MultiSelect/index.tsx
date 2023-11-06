@@ -63,7 +63,7 @@ const MultiSelect = <T extends ItemValue>({
     setIsOpen((prev) => !prev);
   };
 
-  const handleCheckBoxClick =
+  const handleCheck =
     (item: Item<T>) => (e: React.ChangeEvent<HTMLInputElement>) => {
       if (e.currentTarget.checked) {
         onSelect?.(item);
@@ -122,12 +122,12 @@ const MultiSelect = <T extends ItemValue>({
         </div>
         <ul className="items">
           {filteredItems.map((item) => (
-            <li key={item.label}>
+            <li key={item.label} className="item">
               <input
                 id={item.label}
                 type="checkbox"
                 value={item.value}
-                onChange={handleCheckBoxClick(item)}
+                onChange={handleCheck(item)}
                 checked={values[item.label]}
               />
               <label htmlFor={item.label}>{item.label}</label>
