@@ -78,6 +78,10 @@
   cursor: pointer;
 }
 
+.item label {
+  width: 100%;
+}
+
 .select-all {
   color: rgba(0, 0, 0, 0.6);
   display: flex;
