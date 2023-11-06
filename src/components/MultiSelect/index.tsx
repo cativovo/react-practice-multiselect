@@ -78,10 +78,6 @@ const MultiSelect = <T extends ItemValue>({
     setSearchValue(e.target.value);
   };
 
-  const isItemHidden = (i: Item<T>): boolean => {
-    return !i.label.toLowerCase().includes(searchValue.toLowerCase());
-  };
-
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
@@ -100,6 +96,10 @@ const MultiSelect = <T extends ItemValue>({
   }, []);
 
   const selectedCount = Object.values(values).filter(Boolean).length;
+
+  const filteredItems = items.filter((i) =>
+    i.label.toLowerCase().includes(searchValue.toLowerCase()),
+  );
 
   return (
     <div className={`multiselect${isOpen ? " open" : ""}`} ref={containerRef}>
@@ -121,11 +121,8 @@ const MultiSelect = <T extends ItemValue>({
           <label htmlFor="select-all">Select All</label>
         </div>
         <ul className="items">
-          {items.map((item) => (
-            <li
-              key={item.label}
-              className={`item${isItemHidden(item) ? " hidden" : ""}`}
-            >
+          {filteredItems.map((item) => (
+            <li key={item.label}>
               <input
                 id={item.label}
                 type="checkbox"

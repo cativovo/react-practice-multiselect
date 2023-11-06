@@ -69,10 +69,6 @@
   transition: background-color 100ms;
 }
 
-.item.hidden {
-  display: none;
-}
-
 .item:has(input:checked) {
   background-color: rgba(44, 130, 201, 0.15);
 }
